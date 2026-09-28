@@ -1,0 +1,41 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.email == 'marvinisaac24@gmail.com'
+      );
+    }
+
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+    }
+
+    match /settings/{docId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /reports/{reportId} {
+      allow read: if true;
+      allow create: if true;
+      allow update: if true;
+      allow delete: if true;
+    }
+
+    match /report_media/{reportId} {
+      allow read: if true;
+      allow create: if true;
+      allow update: if true;
+      allow delete: if true;
+    }
+  }
+}
+
+

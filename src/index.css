@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+@theme {
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-600: #2563eb;
+  --color-blue-800: #1e40af;
+  --color-blue-900: #1e3a8a;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  --color-yellow-100: #fef9c3;
+  --color-yellow-500: #eab308;
+  --color-yellow-700: #a16207;
+  --color-green-50: #f0fdf4;
+  --color-green-100: #dcfce3;
+  --color-green-700: #15803d;
+  --color-red-50: #fef2f2;
+  --color-red-100: #fee2e2;
+  --color-red-600: #dc2626;
+  --color-red-700: #b91c1c;
+  --color-purple-600: #9333ea;
+  --color-purple-700: #7e22ce;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-transparent: transparent;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0 !important;
+  }
+
+  html, body {
+    background-color: white !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 210mm !important;
+  }
+
+  .print\:hidden {
+    display: none !important;
+  }
+
+  .print\:p-0 {
+    padding: 0 !important;
+  }
+
+  .print\:m-0 {
+    margin: 0 !important;
+  }
+
+  .print\:overflow-visible {
+    overflow: visible !important;
+  }
+
+  .print\:border-none {
+    border: none !important;
+  }
+
+  .print\:shadow-none {
+    box-shadow: none !important;
+  }
+
+  .print\:bg-white {
+    background-color: white !important;
+  }
+
+  .print\:max-w-none {
+    max-width: none !important;
+  }
+
+  .print\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .print\:gap-2 {
+    gap: 0.5rem !important;
+  }
+
+  .print\:break-inside-avoid {
+    break-inside: avoid !important;
+  }
+
+  .print\:min-w-full {
+    min-width: 100% !important;
+  }
+
+  /* Full-bleed A4 Cover Page */
+  .cover-page-container {
+    width: 210mm !important;
+    min-width: 210mm !important;
+    max-width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  /* Full-bleed A4 Back Cover Page */
+  .back-cover-page-container {
+    width: 210mm !important;
+    min-width: 210mm !important;
+    max-width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    page-break-before: always !important;
+    break-before: page !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  /* Clean Professional A4 OPR Page */
+  .opr-page-container {
+    width: 210mm !important;
+    max-width: 210mm !important;
+    min-height: 297mm !important;
+    box-sizing: border-box !important;
+    margin: 0 auto !important;
+    padding: 25.4mm 12mm 10mm 12mm !important; /* Turun lebih kurang 1 inci (25.4mm) dari bahagian atas halaman */
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    background-color: white !important;
+    color: #000000 !important;
+  }
+
+  /* Pastikan semua teks maklumat dalam OPR PDF adalah hitam pekat (#000000) */
+  .opr-page-container,
+  .opr-page-container *,
+  .opr-page-container table,
+  .opr-page-container th,
+  .opr-page-container td,
+  .opr-page-container p,
+  .opr-page-container span,
+  .opr-page-container pre,
+  .opr-page-container h1,
+  .opr-page-container h2,
+  .opr-page-container h3,
+  .cover-page-container p,
+  .cover-page-container span,
+  .cover-page-container td,
+  .cover-page-container th,
+  .back-cover-page-container p,
+  .back-cover-page-container span,
+  .back-cover-page-container h1,
+  .back-cover-page-container h2 {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+  }
+
+  .opr-page-container table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    border-color: #000000 !important;
+  }
+
+  .opr-page-container th,
+  .opr-page-container td {
+    border-color: #000000 !important;
+  }
+
+  tr {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  img {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+.pdf-mode {
+  padding: 40px !important;
+  width: 1000px !important;
+  max-width: 1000px !important;
+  background-color: white !important;
+}
+
+.pdf-mode table {
+  width: 100% !important;
+  min-width: 100% !important;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "One Page Report SK Tudan",
+  "description": "A mobile-friendly web app to create, manage, and print One Page Reports for Sekolah Kebangsaan Tudan, Miri. Features Firebase Auth and Firestore for data persistence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

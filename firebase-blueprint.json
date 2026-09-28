@@ -1,0 +1,236 @@
+{
+  "entities": {
+    "Report": {
+      "title": "Report",
+      "description": "A One Page Report for a school program.",
+      "type": "object",
+      "properties": {
+        "namaProgram": {
+          "type": "string",
+          "description": "Name of the program"
+        },
+        "tarikhPelaksanaan": {
+          "type": "string",
+          "description": "Date of implementation"
+        },
+        "tempat": {
+          "type": "string",
+          "description": "Location of the program"
+        },
+        "sasaran": {
+          "type": "string",
+          "description": "Target audience"
+        },
+        "objektif": {
+          "type": "string",
+          "description": "Objective of the program"
+        },
+        "anjuran": {
+          "type": "string",
+          "description": "Organizer"
+        },
+        "kekuatan": {
+          "type": "string",
+          "description": "Strengths of the program"
+        },
+        "perkaraPerluPenambahbaikan": {
+          "type": "string",
+          "description": "Things that need improvement"
+        },
+        "cadanganPenambahbaikan": {
+          "type": "string",
+          "description": "Suggestions for improvement"
+        },
+        "penilaianKeberkesanan": {
+          "type": "string",
+          "description": "Program effectiveness evaluation"
+        },
+        "gambarMukaDepan": {
+          "type": "string",
+          "description": "Front cover image (data URL or storage URL)"
+        },
+        "gambarMukaBelakang": {
+          "type": "string",
+          "description": "Back cover image (data URL or storage URL)"
+        },
+        "gambarProgram": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of image URLs"
+        },
+        "disediakanOleh": {
+          "type": "string",
+          "description": "Name of the person who prepared the report"
+        },
+        "jawatanDisediakanOleh": {
+          "type": "string",
+          "description": "Position of the person who prepared the report"
+        },
+        "disahkanOleh": {
+          "type": "string",
+          "description": "Name of the person who verified the report"
+        },
+        "jawatanDisahkanOleh": {
+          "type": "string",
+          "description": "Position of the person who verified the report"
+        },
+        "authorUid": {
+          "type": "string",
+          "description": "UID of the user who created the report"
+        },
+        "createdAt": {
+          "type": "timestamp",
+          "description": "Creation timestamp"
+        },
+        "updatedAt": {
+          "type": "timestamp",
+          "description": "Last update timestamp"
+        }
+      },
+      "required": [
+        "namaProgram",
+        "tarikhPelaksanaan",
+        "authorUid",
+        "createdAt"
+      ]
+    },
+    "Settings": {
+      "title": "Settings",
+      "description": "Global settings for the application.",
+      "type": "object",
+      "properties": {
+        "logoSekolah": {
+          "type": "string",
+          "description": "URL of the school logo"
+        },
+        "coverTemplate": {
+          "type": "string",
+          "description": "URL of the cover template image"
+        },
+        "backCoverTemplate": {
+          "type": "string",
+          "description": "URL of the back cover template image"
+        },
+        "senaraiGuru": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "nama": { "type": "string" },
+              "jawatan": { "type": "string" }
+            }
+          },
+          "description": "List of teachers and their positions"
+        }
+      }
+    },
+    "User": {
+      "title": "User",
+      "description": "User profile authenticated with Google Firebase Auth.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Firebase Auth UID"
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name"
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "User profile image URL"
+        },
+        "role": {
+          "type": "string",
+          "description": "Role of the user, e.g. admin or guru"
+        },
+        "lastLogin": {
+          "type": "timestamp",
+          "description": "Timestamp of last login"
+        },
+        "createdAt": {
+          "type": "timestamp",
+          "description": "Timestamp of user account creation"
+        }
+      },
+      "required": [
+        "uid",
+        "email"
+      ]
+    },
+    "ReportMedia": {
+      "title": "ReportMedia",
+      "description": "Separate storage for large base64 image strings of a report to keep main report document under 1MB limit.",
+      "type": "object",
+      "properties": {
+        "reportId": {
+          "type": "string",
+          "description": "Associated Report ID"
+        },
+        "gambarMukaDepan": {
+          "type": "string",
+          "description": "Front cover image base64"
+        },
+        "gambarMukaBelakang": {
+          "type": "string",
+          "description": "Back cover image base64"
+        },
+        "gambarProgram": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of program activity images"
+        },
+        "logos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of institution logos"
+        },
+        "logoSekolah": {
+          "type": "string",
+          "description": "School logo base64"
+        },
+        "updatedAt": {
+          "type": "timestamp",
+          "description": "Last update timestamp"
+        }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/User"
+      },
+      "description": "Collection of authenticated user profiles"
+    },
+    "/reports/{reportId}": {
+      "schema": {
+        "$ref": "#/entities/Report"
+      },
+      "description": "Collection of One Page Reports"
+    },
+    "/report_media/{reportId}": {
+      "schema": {
+        "$ref": "#/entities/ReportMedia"
+      },
+      "description": "Separate collection for large report media assets"
+    },
+    "/settings/{documentId}": {
+      "schema": {
+        "$ref": "#/entities/Settings"
+      },
+      "description": "Global settings collection"
+    }
+  }
+}
